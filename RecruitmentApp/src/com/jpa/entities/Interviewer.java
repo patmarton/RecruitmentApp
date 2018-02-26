@@ -15,7 +15,7 @@ public class Interviewer {
 	
 	@TableGenerator(name = "interviewer_gen", table = "id_gen", pkColumnName = "gen_name", valueColumnName = "gen_val", allocationSize = 1, pkColumnValue = "interviewer_gen")
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "applicant_gen")
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "interviewer_gen")
 	private int interviewerId;
 	
 	@Column(name= "name")
