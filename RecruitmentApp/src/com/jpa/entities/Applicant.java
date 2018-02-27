@@ -22,7 +22,7 @@ public class Applicant {
 	private String name;
 	
 	@Column(name= "job")
-	private String job; // Job they applied for in the past
+	private String job; 
 	
 	@Column(name= "graduation_year")
 	private int year;
