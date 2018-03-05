@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -18,14 +20,19 @@ public class Comment {
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "comment_gen")
 	private int commentId;
 	
+	@ManyToOne
+	@JoinColumn(name="interviewerId")
+	private Interviewer interviewer;
+	
+	@ManyToOne
+	@JoinColumn(name="applicantId")
+	private Applicant applicant;
+	
+	
 	@Column(name= "comment")
 	private String comment;
 	
-	@Column(name= "interviewer")
-	private int interviewer; // FK from interviewer table
-	
-	@Column(name= "applicant")
-	private int applicant; // FK from applicant table
+
 
 	public int getCommentId() {
 		return commentId;
@@ -43,21 +50,23 @@ public class Comment {
 		this.comment = comment;
 	}
 
-	public int getInterviewer() {
+	public Interviewer getInterviewer() {
 		return interviewer;
 	}
 
-	public void setInterviewer(int interviewer) {
+	public void setInterviewer(Interviewer interviewer) {
 		this.interviewer = interviewer;
 	}
 
-	public int getApplicant() {
+	public Applicant getApplicant() {
 		return applicant;
 	}
 
-	public void setApplicant(int applicant) {
+	public void setApplicant(Applicant applicant) {
 		this.applicant = applicant;
 	}
+
+
 	
 	
 	

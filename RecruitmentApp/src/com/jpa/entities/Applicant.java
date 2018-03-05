@@ -1,10 +1,15 @@
 package com.jpa.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -17,6 +22,18 @@ public class Applicant {
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "applicant_gen")
 	private int applicantId;
+
+	@OneToMany(mappedBy = "applicant")
+	private List<Comment> comments;
+	
+	@OneToMany(mappedBy = "applicant")
+	private List<Application> applications;
+	
+	@OneToMany(mappedBy = "applicant")
+	private List<Interview> interviews;
+	
+	@OneToMany(mappedBy = "applicant")
+	private List<Rating> ratings;
 	
 	@Column(name= "name")
 	private String name;
@@ -79,7 +96,42 @@ public class Applicant {
 
 	public void setBirth_year(int birth_year) {
 		this.birth_year = birth_year;
-	} 
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public List<Application> getApplications() {
+		return applications;
+	}
+
+	public void setApplications(List<Application> applications) {
+		this.applications = applications;
+	}
+
+	public List<Interview> getInterviews() {
+		return interviews;
+	}
+
+	public void setInterviews(List<Interview> interviews) {
+		this.interviews = interviews;
+	}
+
+	public List<Rating> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(List<Rating> ratings) {
+		this.ratings = ratings;
+	}
+
+   
+	
 	
 	
 	

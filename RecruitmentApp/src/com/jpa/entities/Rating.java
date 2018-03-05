@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -18,11 +20,14 @@ public class Rating {
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "rating_gen")
 	private int ratingId;
 	
-	@Column(name= "interviewer")
-	private int interviewerId;
+	@ManyToOne
+	@JoinColumn(name="interviewerId")
+	private Interviewer interviewer;
 	
-	@Column(name= "applicant")
-	private int applicantId;
+	@ManyToOne
+	@JoinColumn(name="applicantId")
+	private Applicant applicant;
+	
 	
 	//Scores 1-10 or boolean
 	
@@ -52,21 +57,6 @@ public class Rating {
 		this.ratingId = ratingId;
 	}
 
-	public int getInterviewerId() {
-		return interviewerId;
-	}
-
-	public void setInterviewerId(int interviewerId) {
-		this.interviewerId = interviewerId;
-	}
-
-	public int getApplicantId() {
-		return applicantId;
-	}
-
-	public void setApplicantId(int applicantId) {
-		this.applicantId = applicantId;
-	}
 
 	public int getCommunication() {
 		return communication;
@@ -108,6 +98,23 @@ public class Rating {
 		this.potential = potential;
 	}
 
+	public Interviewer getInterviewer() {
+		return interviewer;
+	}
 
+	public void setInterviewer(Interviewer interviewer) {
+		this.interviewer = interviewer;
+	}
+
+	public Applicant getApplicant() {
+		return applicant;
+	}
+
+	public void setApplicant(Applicant applicant) {
+		this.applicant = applicant;
+	}
+
+
+	
 	
 }

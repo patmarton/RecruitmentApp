@@ -1,10 +1,15 @@
 package com.jpa.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -18,6 +23,16 @@ public class Interviewer {
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "interviewer_gen")
 	private int interviewerId;
 	
+	@OneToMany(mappedBy = "interviewer")
+	private List<Comment> comments;
+	
+	@OneToMany(mappedBy = "interviewer")
+	private List<Rating> ratings;
+	
+	@OneToMany(mappedBy = "interviewer")
+	private List<Interview> interviews;
+	
+
 	@Column(name= "name")
 	private String name;
 	
@@ -62,6 +77,41 @@ public class Interviewer {
 	public void setDoag(int doag){
 		this.doag = doag;
 	}
+
+	public int getInterviewerId() {
+		return interviewerId;
+	}
+
+	public void setInterviewerId(int interviewerId) {
+		this.interviewerId = interviewerId;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public List<Rating> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(List<Rating> ratings) {
+		this.ratings = ratings;
+	}
+
+	public List<Interview> getInterviews() {
+		return interviews;
+	}
+
+	public void setInterviews(List<Interview> interviews) {
+		this.interviews = interviews;
+	}
+
+	
+	
 	
 	
 	
