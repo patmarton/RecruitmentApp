@@ -18,9 +18,8 @@ import javax.persistence.TableGenerator;
 public class Job {
 
 	
-	@TableGenerator(name = "job_gen", table = "id_gen", pkColumnName = "gen_name", valueColumnName = "gen_val", allocationSize = 1, pkColumnValue = "job_gen")
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "job_gen")
+	@GeneratedValue
 	private int jobId;
 	
 	@OneToMany(mappedBy = "job")

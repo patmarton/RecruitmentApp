@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<head>
+<title>Jobs</title>
+</head>
+<body>
+	<h1>Jobs page</h1>
+	<h:form>
+		<h:panelGrid>
+			Name: <h:inputText value="#{jobController.job.name}" />
+			Type: <h:inputText value="#{jobController.job.type}" />
+			<h:commandButton action="#{jobController.createJob}" value="Create" />
+		</h:panelGrid>
+	</h:form>
+	
+	<h:dataTable value="#{jobController.alljobs}" var="job">
+		<h:column>
+			<f:facet name="header">Name</f:facet>
+			#{job.name}
+		</h:column>
+		<h:column>
+		<f:facet name="header">Type</f:facet>
+			#{job.type}
+		</h:column>
+	</h:dataTable>
+</body>
+</html>
