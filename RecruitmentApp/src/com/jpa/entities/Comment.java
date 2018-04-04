@@ -11,13 +11,13 @@ import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
 @Entity
-@Table(name = "comment")
+@Table(name = "Comments")
 public class Comment {
 
 	
-	@TableGenerator(name = "comment_gen", table = "id_gen", pkColumnName = "gen_name", valueColumnName = "gen_val", allocationSize = 1, pkColumnValue = "comment_gen")
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "comment_gen")
+	@GeneratedValue
 	private int commentId;
 	
 	@ManyToOne
@@ -29,7 +29,7 @@ public class Comment {
 	private Applicant applicant;
 	
 	
-	@Column(name= "comment")
+	@Column(name= "comments")
 	private String comment;
 	
 

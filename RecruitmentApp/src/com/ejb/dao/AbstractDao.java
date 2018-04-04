@@ -14,7 +14,7 @@ public abstract class AbstractDao<T, I> {
 	public AbstractDao(Class<T> entityClass) {
 		super();
 		this.entityClass = entityClass;
-	}
+	}//comment
 
 	public abstract EntityManager em();
 	

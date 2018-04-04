@@ -36,7 +36,7 @@ public class Interview {
 	@JoinColumn(name="jobId")
 	private Job job;
 	
-	@Column(name= "date")
+	@Column(name= "interviewdate")
 	private Date date;
 	
 	@Column(name= "description")
