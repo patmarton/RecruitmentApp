@@ -24,7 +24,7 @@ public class InterviewController {
 	
 	private List<Interview> allInterviews;
 	
-	public String createApplication(){
+	public String createInterview(){
 		interviewService.addInterview(interview);
 		allInterviews = interviewDao.findAll();
 		interview = new Interview();

@@ -24,7 +24,7 @@ public class InterviewerController {
 	
 	private List<Interviewer> allInterviewers;
 	
-	public String createApplication(){
+	public String createInterviewer(){
 		interviewerService.addInterviewer(interviewer);
 		allInterviewers = interviewerDao.findAll();
 		interviewer = new Interviewer();
@@ -32,7 +32,7 @@ public class InterviewerController {
 	}
 	
 
-	public Interviewer getInterview() {
+	public Interviewer getInterviewer() {
 		return interviewer;
 	}
 
