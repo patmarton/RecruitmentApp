@@ -46,11 +46,4 @@
 		<nature>org.jboss.tools.jsf.jsfnature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>WebContent/WEB-INF/lib/primefaces-6.2.jar</name>
-			<type>1</type>
-			<location>C:/Users/Patrik/Desktop/primefaces-6.2.jar</location>
-		</link>
-	</linkedResources>
 </projectDescription>

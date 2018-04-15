@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<head>
+<title>Add comments</title>
+</head>
+<body>
+	<h1>Add comments to an interview here</h1>
+	
+	<p:menu>
+        <p:submenu label="Interview">
+            <p:menuitem value="Interviewers" url="/interviewers.xhtml" icon="ui-icon-disk" />
+            <p:menuitem value="Arrange Interview" url="/interviews.xhtml" icon="ui-icon-arrowrefresh-1-w"/>
+        </p:submenu>
+        <p:submenu label="Jobs">
+            <p:menuitem value="View open jobs" url="/jobs.xhtml" icon="ui-icon-close"/>
+        </p:submenu>
+        <p:submenu label="Applications">
+        	<p:menuitem value="New Application" url="/applications.xhtml" icon="ui-icon-close"/>
+            <p:menuitem value="Add applicant" url="/applicants.xhtml" icon="ui-icon-close"/>
+            <p:menuitem value="Add rating" url="/ratings.xhtml" icon="ui-icon-close"/>
+        </p:submenu>
+    </p:menu>
+	
+	
+	<h:form>
+		<h:panelGrid>
+			Interviewer: <h:inputText value="#{commentController.comment.interviewer}" />
+			Applicant: <h:inputText value="#{commentController.comment.applicant}" />
+			Comment: <h:inputText value="#{commentController.comment.comment}" />
+			
+			<h:commandButton action="#{commentController.createComment}" value="Create" />
+		
+		</h:panelGrid>
+	</h:form>
+	
+	<p:dataTable value="#{commentController.allComments}" var="comment">
+		<p:column>
+			<f:facet name="header">Comment</f:facet>
+			#{comment.comment}
+		</p:column>
+		<p:column>
+		<f:facet name="header">Applicant</f:facet>
+			#{comment.applicant}
+		</p:column>
+		<p:column>
+			<f:facet name="header">Interviewer</f:facet>
+			#{comment.interviewer}
+		</p:column>
+		
+	</p:dataTable>
+</body>
+</html>

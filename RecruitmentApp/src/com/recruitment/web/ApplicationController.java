@@ -14,7 +14,7 @@ import com.jpa.entities.Application;
 @RequestScoped
 public class ApplicationController {
 
-	@EJB
+	@EJB(lookup = "java:/ApplicationService")
 	ApplicationService applicationService;
 	
 	@EJB

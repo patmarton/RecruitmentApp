@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<head>
+<title>Arrange Interviews</title>
+</head>
+
+
+	<p:menu>
+        <p:submenu label="Interview">
+            <p:menuitem value="Interviewers" url="/interviewers.xhtml" icon="ui-icon-disk" />
+            <p:menuitem value="Arrange Interview" url="/interviews.xhtml" icon="ui-icon-arrowrefresh-1-w"/>
+        </p:submenu>
+        <p:submenu label="Jobs">
+            <p:menuitem value="View open jobs" url="/jobs.xhtml" icon="ui-icon-close"/>
+        </p:submenu>
+        <p:submenu label="Comment">
+            <p:menuitem value="Add comment" url="/comments.xhtml" icon="ui-icon-close"/>
+        </p:submenu>
+         <p:submenu label="Applications">
+         	<p:menuitem value="New Application" url="/applications.xhtml" icon="ui-icon-close"/>
+            <p:menuitem value="Add applicant" url="/applicants.xhtml" icon="ui-icon-close"/>
+            <p:menuitem value="Add rating" url="/ratings.xhtml" icon="ui-icon-close"/>
+        </p:submenu>
+    </p:menu>
+
+
+<body>
+	<h1>Add data to arrange a new Interview</h1>
+	<h:form>
+		<h:panelGrid>
+			Job: <h:inputText value="#{interviewController.interview.job}" />
+      		Date: <p:calendar mode="popup"  value="#{interviewController.interview.date}" />
+			Description: <h:inputText value="#{interviewController.interview.description}" />
+			Interviewer: <h:inputText value="#{interviewController.interview.interviewer}" />
+			Applicant: <h:inputText value="#{interviewController.interview.applicant}" />
+			<h:commandButton action="#{interviewController.createInterview}" value="Create" />
+		
+		</h:panelGrid>
+	</h:form>
+	
+	<p:dataTable value="#{interviewController.allInterviews}" var="interview">
+		<p:column>
+			<f:facet name="header">Job</f:facet>
+			#{interview.job}
+		</p:column>
+		<p:column>
+		<f:facet name="header">Date</f:facet>
+			#{interview.date}
+		</p:column>
+		<p:column>
+			<f:facet name="header">Description</f:facet>
+			#{interview.description}
+		</p:column>
+		<p:column>
+			<f:facet name="header">Interviewer</f:facet>
+			#{interview.interviewer}
+		</p:column>
+		<p:column>
+			<f:facet name="header">Applicant</f:facet>
+			#{interview.applicant}
+		</p:column>
+	</p:dataTable>
+</body>
+</html>

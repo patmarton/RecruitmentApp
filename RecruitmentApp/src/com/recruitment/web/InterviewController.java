@@ -2,6 +2,7 @@ package com.recruitment.web;
 
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -14,7 +15,7 @@ import com.jpa.entities.Interview;
 @RequestScoped
 public class InterviewController {
 
-	@EJB
+	@EJB(lookup = "java:/InterviewService")
 	InterviewService interviewService;
 	
 	@EJB

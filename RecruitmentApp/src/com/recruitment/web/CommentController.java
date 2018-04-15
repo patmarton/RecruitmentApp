@@ -32,7 +32,7 @@ public class CommentController {
 	}
 	
 
-	public Comment getCommentn() {
+	public Comment getComment() {
 		return comment;
 	}
 

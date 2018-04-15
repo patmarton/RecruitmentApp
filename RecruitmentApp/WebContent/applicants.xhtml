@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<head>
+<title>Add a new Applicant</title>
+</head>
+<body>
+	<h1>Add a new Applicant</h1>
+	
+	<p:menu>
+        <p:submenu label="Interview">
+            <p:menuitem value="Interviewers" url="/interviewers.xhtml" icon="ui-icon-disk" />
+            <p:menuitem value="Arrange Interview" url="/interviews.xhtml" icon="ui-icon-arrowrefresh-1-w"/>
+        </p:submenu>
+        <p:submenu label="Jobs">
+            <p:menuitem value="View open jobs" url="/jobs.xhtml" icon="ui-icon-close"/>
+        </p:submenu>
+        <p:submenu label="Comment">
+            <p:menuitem value="Add comment" url="/comments.xhtml" icon="ui-icon-close"/>
+        </p:submenu>
+        <p:submenu label="Application">
+        	<p:menuitem value="New Application" url="/applications.xhtml" icon="ui-icon-close"/>
+            <p:menuitem value="Add rating" url="/ratings.xhtml" icon="ui-icon-close"/>
+        </p:submenu>
+    </p:menu>
+	
+	
+	<h:form>
+		<h:panelGrid>
+			Name: <h:inputText value="#{applicantController.applicant.name}" />
+			Birth year: <h:inputText value="#{applicantController.applicant.birth_year}" />
+			Job: <h:inputText value="#{applicantController.applicant.job}" />
+			Graduation year: <h:inputText value="#{applicantController.applicant.year}" />
+			University: <h:inputText value="#{applicantController.applicant.university}" />
+			
+			<h:commandButton action="#{applicantController.createApplicant}" value="Create" />
+		
+		</h:panelGrid>
+	</h:form>
+	
+	<p:dataTable value="#{applicantController.allApplicants}" var="applicant">
+		<p:column>
+			<f:facet name="header">Name</f:facet>
+			#{applicant.name}
+		</p:column>
+		<p:column>
+		<f:facet name="header">Birth year</f:facet>
+			#{applicant.birth_year}
+		</p:column>
+		<p:column>
+			<f:facet name="header">Job</f:facet>
+			#{applicant.job}
+		</p:column>
+		<p:column>
+			<f:facet name="header">Graduation</f:facet>
+			#{applicant.year}
+		</p:column>
+		<p:column>
+			<f:facet name="header">University</f:facet>
+			#{applicant.university}
+		</p:column>
+		
+	</p:dataTable>
+</body>
+</html>

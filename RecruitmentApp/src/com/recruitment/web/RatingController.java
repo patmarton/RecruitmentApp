@@ -24,7 +24,7 @@ public class RatingController {
 	
 	private List<Rating> allRatings;
 	
-	public String createJob(){
+	public String createRating(){
 		ratingService.addRating(rating);
 		allRatings = ratingDao.findAll();
 		rating = new Rating();
