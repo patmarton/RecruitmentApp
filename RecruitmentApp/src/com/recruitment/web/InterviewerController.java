@@ -2,6 +2,7 @@ package com.recruitment.web;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -24,11 +25,21 @@ public class InterviewerController {
 	
 	private List<Interviewer> allInterviewers;
 	
+	@PostConstruct
+	public void init(){
+		refreshAllInterviewers();
+	}
+	
 	public String createInterviewer(){
 		interviewerService.addInterviewer(interviewer);
-		allInterviewers = interviewerDao.findAll();
+		refreshAllInterviewers();
 		interviewer = new Interviewer();
 		return null;
+	}
+
+
+	private void refreshAllInterviewers() {
+		allInterviewers = interviewerDao.findAll();
 	}
 	
 

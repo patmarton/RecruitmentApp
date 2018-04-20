@@ -5,9 +5,9 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html">
 
-<head>
+<h:head>
 <title>Ratings</title>
-</head>
+</h:head>
 <body>
 	<h1>Add ratings here to interviews</h1>
 	
@@ -37,12 +37,10 @@
 			Skills (1-10): <h:inputText value="#{ratingController.rating.skills}" />
 			Test (1-10): <h:inputText value="#{ratingController.rating.test}" />
 			Recommended (true or false): <h:inputText value="#{ratingController.rating.recommended}" />
-			<!--
 			<p:selectOneMenu id="rating" value="#{ratingController.rating.recommended}" style="width:150px">
                 <f:selectItem  itemLabel="True" itemValue="true" />
                 <f:selectItem  itemLabel="False" itemValue="false" />
             </p:selectOneMenu>
-            -->
 			Potential (1-10): <h:inputText value="#{ratingController.rating.potential}" />
 			<h:commandButton action="#{ratingController.createRating}" value="Create" />
 		
