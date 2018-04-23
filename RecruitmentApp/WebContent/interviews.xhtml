@@ -64,6 +64,10 @@
 			<f:facet name="header">Applicant</f:facet>
 			#{interview.applicant}
 		</p:column>
+		<p:column>
+			<f:facet name="header">Delete</f:facet>
+			<p:commandLink value="Delete" action="#{interviewController.deleteInterview(interview)}" />
+		</p:column>
 	</p:dataTable>
 </body>
 </html>

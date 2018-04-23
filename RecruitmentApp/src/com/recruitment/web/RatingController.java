@@ -2,12 +2,14 @@ package com.recruitment.web;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 import com.ejb.dao.RatingDao;
 import com.ejb.services.RatingService;
+import com.jpa.entities.Applicant;
 import com.jpa.entities.Rating;
 
 @Named
@@ -20,6 +22,16 @@ public class RatingController {
 	@EJB
 	RatingDao ratingDao;
 	
+	@PostConstruct
+	public void init(){
+		refreshAllRatings();
+	}
+	
+	private void refreshAllRatings() {
+		allRatings = ratingDao.findAll();
+	}
+	
+	
 	private Rating rating = new Rating();
 	
 	private List<Rating> allRatings;
@@ -27,7 +39,14 @@ public class RatingController {
 	public String createRating(){
 		ratingService.addRating(rating);
 		allRatings = ratingDao.findAll();
+		refreshAllRatings();
 		rating = new Rating();
+		return null;
+	}
+	
+	public String deleteRating(Rating rating){
+		ratingDao.delete(rating);
+		refreshAllRatings();
 		return null;
 	}
 	

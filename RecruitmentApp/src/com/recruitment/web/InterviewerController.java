@@ -36,6 +36,13 @@ public class InterviewerController {
 		interviewer = new Interviewer();
 		return null;
 	}
+	
+	public String deleteInterviewer(Interviewer in){
+		interviewerService.deleteInterviewer(in);
+		interviewerDao.delete(in);
+		refreshAllInterviewers();
+		return null;
+	}
 
 
 	private void refreshAllInterviewers() {
@@ -51,11 +58,11 @@ public class InterviewerController {
 		this.interviewer = interviewer;
 	}
 
-	public List<Interviewer> getAllInterviewers() {
+	public List<Interviewer> getallInterviewers() {
 		return allInterviewers;
 	}
 
-	public void setAllInterviewers(List<Interviewer> allInterviewers) {
+	public void setallInterviewers(List<Interviewer> allInterviewers) {
 		this.allInterviewers = allInterviewers;
 	}
 	

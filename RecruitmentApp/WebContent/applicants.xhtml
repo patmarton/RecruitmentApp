@@ -63,6 +63,10 @@
 			<f:facet name="header">University</f:facet>
 			#{applicant.university}
 		</p:column>
+		<p:column>
+			<f:facet name="header">Delete</f:facet>
+			<p:commandLink value="Delete" action="#{applicantController.deleteApplicant(applicant)}" />
+		</p:column>
 		
 	</p:dataTable>
 </body>

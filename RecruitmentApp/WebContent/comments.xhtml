@@ -51,6 +51,10 @@
 			<f:facet name="header">Interviewer</f:facet>
 			#{comment.interviewer}
 		</p:column>
+		<p:column>
+			<f:facet name="header">Delete</f:facet>
+			<p:commandLink value="Delete" action="#{commentController.deleteComment(comment)}" />
+		</p:column>
 		
 	</p:dataTable>
 </body>

@@ -6,4 +6,7 @@ public interface InterviewerService {
  
 	public void addInterviewer(Interviewer in);
 	
+
+	public void deleteInterviewer(Interviewer interviewer);
+	
 }

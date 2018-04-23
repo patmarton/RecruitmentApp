@@ -41,17 +41,22 @@
 		</h:panelGrid>
 	</h:form>
 	
-	<h:dataTable value="#{jobController.alljobs}" var="job">
-		<h:column>
+	<p:dataTable value="#{jobController.alljobs}" var="job">
+		<p:column>
 			<f:facet name="header">Name</f:facet>
 			#{job.name}
-		</h:column>
-		<h:column>
+		</p:column>
+		<p:column>
 		<f:facet name="header">Type</f:facet>
 			#{job.type}
-		</h:column>
+		</p:column>
 		
-	</h:dataTable>
-	<h:commandButton action="#{jobController.getAlljobs}" value="Show all" />
+		<p:column>
+			<f:facet name="header">Delete</f:facet>
+			<p:commandLink value="Delete" action="#{jobController.deleteJob(job)}" />
+		</p:column>
+		
+	</p:dataTable>
+
 </body>
 </html>

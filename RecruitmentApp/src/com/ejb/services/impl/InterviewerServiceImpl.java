@@ -19,4 +19,10 @@ public class InterviewerServiceImpl implements InterviewerService {
 		em.persist(in);
 
 	}
+
+	@Override
+	public void deleteInterviewer(Interviewer interviewer) {
+		
+		
+	}
 }

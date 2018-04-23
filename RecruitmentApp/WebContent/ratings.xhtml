@@ -31,12 +31,23 @@
     
 	<h:form>
 		<h:panelGrid>
-			Interviewer: <h:inputText value="#{ratingController.rating.interviewer}" />
-			Applicant: <h:inputText value="#{ratingController.rating.applicant}" />
+			Interviewer: 
+			<p:selectOneMenu id="menu1" value="#{interviewerController.interviewer.name}">
+            	<f:selectItem itemLabel="Select One" itemValue="" />
+            	<f:selectItems value="#{interviewerController.allInterviewers}"  var="s" itemLabel="#{s.name}"/>
+        	</p:selectOneMenu>
+			
+			Applicant: 
+			
+			<p:selectOneMenu id="menu2" value="#{applicantController.applicant.name}">
+            	<f:selectItem itemLabel="Select One" itemValue="" />
+            	<f:selectItems value="#{applicantController.allApplicants}"  var="s" itemLabel="#{s.name}"/>
+        	</p:selectOneMenu>
+			
 			Communication (1-10): <h:inputText value="#{ratingController.rating.communication}" />
 			Skills (1-10): <h:inputText value="#{ratingController.rating.skills}" />
 			Test (1-10): <h:inputText value="#{ratingController.rating.test}" />
-			Recommended (true or false): <h:inputText value="#{ratingController.rating.recommended}" />
+			Recommended (true or false):
 			<p:selectOneMenu id="rating" value="#{ratingController.rating.recommended}" style="width:150px">
                 <f:selectItem  itemLabel="True" itemValue="true" />
                 <f:selectItem  itemLabel="False" itemValue="false" />
@@ -51,6 +62,7 @@
 		<p:column>
 			<f:facet name="header">Interviewer</f:facet>
 			#{rating.interviewer}
+			
 		</p:column>
 		<p:column>
 		<f:facet name="header">Applicant</f:facet>
@@ -76,6 +88,11 @@
 			<f:facet name="header">Potential</f:facet>
 			#{rating.potential}
 		</p:column>
+		<p:column>
+			<f:facet name="header">Delete</f:facet>
+			<p:commandLink value="Delete" action="#{ratingController.deleteRating(rating)}" />
+		</p:column>
+		
 	</p:dataTable>
 </body>
 </html>

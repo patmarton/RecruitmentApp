@@ -61,7 +61,11 @@
 		</p:column>
 		<p:column>
 			<f:facet name="header">Other</f:facet>
-			#{application.other}
+			#{application.others}
+		</p:column>
+		<p:column>
+			<f:facet name="header">Delete</f:facet>
+			<p:commandLink value="Delete" action="#{applicationController.deleteApplication(application)}" />
 		</p:column>
 		
 	</p:dataTable>
