@@ -53,8 +53,12 @@
 		
 		</h:panelGrid>
 	</h:form>
-	<h:form>
-	<p:dataTable value="#{applicationController.allApplications}" var="application">
+	<h:form id ="form">
+	<p:growl id="msgs" showDetail="true" />
+	<p:dataTable value="#{applicationController.allApplications}" var="application" editable="true"
+			editMode="cell">
+			<p:ajax event="cellEdit"
+				listener="#{applicationController.onCellEdit}" update=":form:msgs" />
 	
 	
 	<f:facet name="header">
@@ -67,6 +71,7 @@
 	
 		<p:column>
 			<f:facet name="header">Name</f:facet>
+			
 			#{application.applicant}
 		</p:column>
 		<p:column>
@@ -75,15 +80,42 @@
 		</p:column>
 		<p:column>
 			<f:facet name="header">Stage</f:facet>
-			#{application.stage}
+			<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{application.stage}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="modelInput" value="#{application.stage}"
+							style="width:96%" />
+					</f:facet>
+				</p:cellEditor>
+			
 		</p:column>
 		<p:column>
 			<f:facet name="header">Reason</f:facet>
-			#{application.reason}
+			<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{application.reason}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="modelInput2" value="#{application.reason}"
+							style="width:96%" />
+					</f:facet>
+				</p:cellEditor>
+			
 		</p:column>
 		<p:column>
 			<f:facet name="header">Other</f:facet>
-			#{application.others}
+			<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{application.others}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="modelInput3" value="#{application.others}"
+							style="width:96%" />
+					</f:facet>
+				</p:cellEditor>
+			
 		</p:column>
 		<p:column>
 			<f:facet name="header">Delete</f:facet>

@@ -5,7 +5,11 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
+
+import org.primefaces.event.CellEditEvent;
 
 import com.ejb.dao.InterviewerDao;
 import com.ejb.services.InterviewerService;
@@ -74,5 +78,22 @@ public class InterviewerController {
 	public void setallInterviewers(List<Interviewer> allInterviewers) {
 		this.allInterviewers = allInterviewers;
 	}
+	
+	
+	
+	public void onCellEdit(CellEditEvent event) {
+        Object oldValue = event.getOldValue();
+        Object newValue = event.getNewValue();
+        
+        for(Interviewer in : allInterviewers){
+        	interviewerDao.update(in);
+        }
+         
+        if(newValue != null && !newValue.equals(oldValue)) {
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
+    }
+	
 	
 }

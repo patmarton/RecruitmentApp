@@ -48,8 +48,14 @@
 		
 		</h:panelGrid>
 	</h:form>
-	<h:form>
-	<p:dataTable value="#{interviewController.allInterviews}" var="interview">
+	<h:form id="form">
+	<p:growl id="msgs" showDetail="true" />
+	<p:dataTable value="#{interviewController.allInterviews}" var="interview" editable="true"
+			editMode="cell">
+			<p:ajax event="cellEdit"
+				listener="#{interviewController.onCellEdit}" update=":form:msgs" />
+	
+	
 		<p:column filterBy="#{interview.job}">
 			<f:facet name="header">Job</f:facet>
 			#{interview.job}
@@ -60,11 +66,30 @@
 		</p:column>
 		<p:column filterBy="#{interview.description}">
 			<f:facet name="header">Description</f:facet>
-			#{interview.description}
+			<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{interview.description}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="modelInput3" value="#{interview.description}"
+							style="width:96%" />
+					</f:facet>
+				</p:cellEditor>
+			
 		</p:column>
 		<p:column filterBy="#{interview.interviewer}">
 			<f:facet name="header">Interviewer</f:facet>
-			#{interview.interviewer}
+			<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{interview.interviewer}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:selectOneMenu value="#{interview.interviewer}" style="width:100%">
+                       		<f:selectItems value="#{interviewerController.allInterviewers}" var="s" itemLabel="#{s.name}" />
+                   		</p:selectOneMenu>
+					</f:facet>
+				</p:cellEditor>
+			
 		</p:column>
 		<p:column filterBy="#{interview.applicant}">
 			<f:facet name="header">Applicant</f:facet>

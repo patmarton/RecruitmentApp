@@ -5,7 +5,11 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
+
+import org.primefaces.event.CellEditEvent;
 
 import com.ejb.dao.ApplicantDao;
 import com.ejb.services.ApplicantService;
@@ -64,5 +68,21 @@ public class ApplicantController {
 	public void setAllApplicants(List<Applicant> allApplicants) {
 		this.allApplicants = allApplicants;
 	}
+	
+	
+	public void onCellEdit(CellEditEvent event) {
+        Object oldValue = event.getOldValue();
+        Object newValue = event.getNewValue();
+        
+        for(Applicant app : allApplicants){
+        	applicantDao.update(app);
+        }
+         
+        if(newValue != null && !newValue.equals(oldValue)) {
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
+    }
+	
 	
 }

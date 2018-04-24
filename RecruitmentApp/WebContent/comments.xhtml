@@ -43,17 +43,35 @@
             	<f:selectItems value="#{applicantController.allApplicants}"  var="s" itemLabel="#{s.name}"/>
         	</p:selectOneMenu>
 			
-			Comment: <h:inputText value="#{commentController.comment.comment}" />
+			Comment: <p:inputText value="#{commentController.comment.comment}" />
 			
 			<h:commandButton action="#{commentController.createComment}" value="Create" />
 		
 		</h:panelGrid>
 	</h:form>
-	<h:form>
-	<p:dataTable value="#{commentController.allComments}" var="comment">
+	<h:form id="form">
+	<p:growl id="msgs" showDetail="true" />
+	<p:dataTable value="#{commentController.allComments}" var="comment" editable="true"
+			editMode="cell">
+			<p:ajax event="cellEdit"
+				listener="#{commentController.onCellEdit}" update=":form:msgs" />
+	
+	
+	
 		<p:column filterBy="#{comment.comment}">
 			<f:facet name="header">Comment</f:facet>
-			#{comment.comment}
+			<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{comment.comment}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="modelInput3" value="#{comment.comment}"
+							style="width:96%" />
+					</f:facet>
+				</p:cellEditor>
+			
+			
+			
 		</p:column>
 		<p:column filterBy="#{comment.applicant}">
 		<f:facet name="header">Applicant</f:facet>

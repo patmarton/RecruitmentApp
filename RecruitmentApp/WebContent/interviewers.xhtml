@@ -6,72 +6,140 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
-<title>Interviewers</title>
+	<title>Interviewers</title>
 </h:head>
 <body>
 	<h1>Interviewers page</h1>
-	
+
 
 	<p:menu>
-        <p:submenu label="Interview">
-            <p:menuitem value="Interviewers" url="/interviewers.xhtml" icon="ui-icon-disk" />
-            <p:menuitem value="Arrange Interview" url="/interviews.xhtml" icon="ui-icon-arrowrefresh-1-w"/>
-        </p:submenu>
-        <p:submenu label="Jobs">
-            <p:menuitem value="View open jobs" url="/jobs.xhtml" icon="ui-icon-close"/>
-        </p:submenu>
-        <p:submenu label="Applications">
-        	<p:menuitem value="New Application" url="/applications.xhtml" icon="ui-icon-close"/>
-            <p:menuitem value="Add applicant" url="/applicants.xhtml" icon="ui-icon-close"/>
-            <p:menuitem value="Add rating" url="/ratings.xhtml" icon="ui-icon-close"/>
-        </p:submenu>
-    </p:menu>
-    
-    
+		<p:submenu label="Interview">
+			<p:menuitem value="Interviewers" url="/interviewers.xhtml"
+				icon="ui-icon-disk" />
+			<p:menuitem value="Arrange Interview" url="/interviews.xhtml"
+				icon="ui-icon-arrowrefresh-1-w" />
+		</p:submenu>
+		<p:submenu label="Jobs">
+			<p:menuitem value="View open jobs" url="/jobs.xhtml"
+				icon="ui-icon-close" />
+		</p:submenu>
+		<p:submenu label="Applications">
+			<p:menuitem value="New Application" url="/applications.xhtml"
+				icon="ui-icon-close" />
+			<p:menuitem value="Add applicant" url="/applicants.xhtml"
+				icon="ui-icon-close" />
+			<p:menuitem value="Add rating" url="/ratings.xhtml"
+				icon="ui-icon-close" />
+		</p:submenu>
+	</p:menu>
+
+
 	<h:form>
 		<h:panelGrid>
-			Name: <h:inputText value="#{interviewerController.interviewer.name}" />
-			Job: <h:inputText value="#{interviewerController.interviewer.job}" />
-			Position: <h:inputText value="#{interviewerController.interviewer.position}" />
-			Doag: <h:inputText value="#{interviewerController.interviewer.doag}" />
-			<h:commandButton action="#{interviewerController.createInterviewer}" value="Create" />
-		
+			Name: <p:inputText value="#{interviewerController.interviewer.name}" />
+			Job: <p:inputText value="#{interviewerController.interviewer.job}" />
+			Position: <p:inputText
+				value="#{interviewerController.interviewer.position}" />
+			Doag: <p:inputText value="#{interviewerController.interviewer.doag}" />
+			<h:commandButton action="#{interviewerController.createInterviewer}"
+				value="Create" />
+
 		</h:panelGrid>
 	</h:form>
-	<h:form>
-	<p:dataTable value="#{interviewerController.allInterviewers}" var="interviewer" widgetVar="interviewer" editable="true">
-	
-	<f:facet name="header">
-			<p:outputPanel>
-                <h:outputText value="Search all fields:" />
-                <p:inputText id="globalFilter" onkeyup="PF('interviewer').filter()" style="width:150px" placeholder="Enter keyword"/>
-            </p:outputPanel>
-    </f:facet>
-	
-		<p:column filterBy="#{interviewer.name}" sortBy="#{interviewer.name}" filterMatchMode="contains">
-		
-			<f:facet name="header">Name</f:facet>
-			<h:outputText value="#{interviewer.name}"/>
-			
-		
-		</p:column>
-		<p:column filterBy="#{interviewer.job}" sortBy="#{interviewer.job}">
-		<f:facet name="header">Job</f:facet>
-			#{interviewer.job}
-		</p:column>
-		<p:column filterBy="#{interviewer.position}" sortBy="#{interviewer.position}">
-			<f:facet name="header">Position</f:facet>
-			#{interviewer.position}
-		</p:column>
-		<p:column filterBy="#{interviewer.doag}" sortBy="#{interviewer.doag}">
-			<f:facet name="header">Doag</f:facet>
-			#{interviewer.doag}
-		</p:column>
-		<p:column>
-			<f:facet name="header">Delete</f:facet>
-			<p:commandLink value="Delete" action="#{interviewerController.deleteInterviewer(interviewer)}" />
-		</p:column>
-	</p:dataTable>
+	<h:form id="form">
+		<p:growl id="msgs" showDetail="true" />
+		<p:dataTable value="#{interviewerController.allInterviewers}"
+			var="interviewer" widgetVar="interviewer" editable="true"
+			editMode="cell">
+			<p:ajax event="cellEdit"
+				listener="#{interviewerController.onCellEdit}" update=":form:msgs" />
+
+			<f:facet name="header">
+				<p:outputPanel>
+					<h:outputText value="Search all fields:" />
+					<p:inputText id="globalFilter" onkeyup="PF('interviewer').filter()"
+						style="width:150px" placeholder="Enter keyword" />
+				</p:outputPanel>
+			</f:facet>
+
+
+
+			<p:column filterBy="#{interviewer.name}" sortBy="#{interviewer.name}"
+				filterMatchMode="contains">
+
+				<f:facet name="header">Name</f:facet>
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{interviewer.name}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="modelInput" value="#{interviewer.name}"
+							style="width:96%" />
+					</f:facet>
+				</p:cellEditor>
+
+
+
+			</p:column>
+
+			<p:column filterBy="#{interviewer.job}" sortBy="#{interviewer.job}">
+				<f:facet name="header">Job</f:facet>
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{interviewer.job}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="modelInput2" value="#{interviewer.job}"
+							style="width:96%" />
+					</f:facet>
+				</p:cellEditor>
+
+			</p:column>
+
+			<p:column filterBy="#{interviewer.position}"
+				sortBy="#{interviewer.position}">
+				<f:facet name="header">Position</f:facet>
+
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{interviewer.position}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="modelInput3" value="#{interviewer.position}"
+							style="width:96%" />
+					</f:facet>
+				</p:cellEditor>
+
+
+			</p:column>
+
+
+
+
+			<p:column filterBy="#{interviewer.doag}" sortBy="#{interviewer.doag}">
+				<f:facet name="header">Doag</f:facet>
+
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{interviewer.doag}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="modelInput4" value="#{interviewer.doag}"
+							style="width:96%" />
+					</f:facet>
+				</p:cellEditor>
+
+
+
+
+
+			</p:column>
+			<p:column>
+				<f:facet name="header">Delete</f:facet>
+				<p:commandLink value="Delete"
+					action="#{interviewerController.deleteInterviewer(interviewer)}" />
+			</p:column>
+		</p:dataTable>
 	</h:form>
 </body>
 </html>

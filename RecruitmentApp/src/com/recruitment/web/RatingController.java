@@ -5,11 +5,16 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
+
+import org.primefaces.event.CellEditEvent;
 
 import com.ejb.dao.RatingDao;
 import com.ejb.services.RatingService;
 import com.jpa.entities.Applicant;
+import com.jpa.entities.Interviewer;
 import com.jpa.entities.Rating;
 
 @Named
@@ -66,5 +71,21 @@ public class RatingController {
 	public void setAllRatings(List<Rating> allRatings) {
 		this.allRatings = allRatings;
 	}
+	
+	public void onCellEdit(CellEditEvent event) {
+        Object oldValue = event.getOldValue();
+        Object newValue = event.getNewValue();
+        
+        for(Rating rating : allRatings){
+        	ratingDao.update(rating);
+        }
+         
+        if(newValue != null && !newValue.equals(oldValue)) {
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
+    }
+	
+	
 	
 }

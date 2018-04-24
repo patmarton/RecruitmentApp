@@ -57,8 +57,14 @@
 		
 		</h:panelGrid>
 	</h:form>
-	<h:form>
-	<p:dataTable value="#{ratingController.allRatings}" var="rating">
+	<h:form id="form">
+	<p:growl id="msgs" showDetail="true" />
+	<p:dataTable value="#{ratingController.allRatings}" var="rating" editable="true"
+			editMode="cell">
+			<p:ajax event="cellEdit"
+				listener="#{ratingController.onCellEdit}" update=":form:msgs" />
+	
+	
 		<p:column filterBy="#{rating.interviewer}">
 			<f:facet name="header">Interviewer</f:facet>
 			#{rating.interviewer}

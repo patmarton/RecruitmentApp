@@ -33,20 +33,48 @@
 	
 	<h:form>
 		<h:panelGrid>
-			Name: <h:inputText value="#{jobController.job.name}" />
-			Type: <h:inputText value="#{jobController.job.type}" />
+			Name: <p:inputText value="#{jobController.job.name}" />
+			Type: <p:inputText value="#{jobController.job.type}" />
 			<h:commandButton action="#{jobController.createJob}" value="Create" />
 		</h:panelGrid>
 	</h:form>
-	<h:form>
-	<p:dataTable value="#{jobController.alljobs}" var="job">
+	<h:form id="form">
+	<p:growl id="msgs" showDetail="true" />
+	<p:dataTable value="#{jobController.alljobs}" var="job"  editable="true"
+			editMode="cell">
+			<p:ajax event="cellEdit"
+				listener="#{jobController.onCellEdit}" update=":form:msgs" />
+	
+	
 		<p:column filterBy="#{job.name}" sortBy="#{job.name}">
 			<f:facet name="header">Name</f:facet>
-			#{job.name}
+			
+			<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{job.name}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="modelInput" value="#{job.name}"
+							style="width:96%" />
+					</f:facet>
+				</p:cellEditor>
+			
+			
 		</p:column>
 		<p:column filterBy="#{job.type}" sortBy="#{job.type}">
 		<f:facet name="header">Type</f:facet>
-			#{job.type}
+		
+		<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{job.type}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="modelInput2" value="#{job.type}"
+							style="width:96%" />
+					</f:facet>
+				</p:cellEditor>
+		
+			
 		</p:column>
 		
 		<p:column>
