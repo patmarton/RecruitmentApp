@@ -41,25 +41,25 @@
 		
 		</h:panelGrid>
 	</h:form>
-	
+	<h:form>
 	<p:dataTable value="#{applicantController.allApplicants}" var="applicant">
-		<p:column>
+		<p:column filterBy="#{applicant.name}" sortBy="#{applicant.name}">
 			<f:facet name="header">Name</f:facet>
 			#{applicant.name}
 		</p:column>
-		<p:column>
+		<p:column filterBy="#{applicant.birth_year}" sortBy="#{applicant.birth_year}">
 		<f:facet name="header">Birth year</f:facet>
 			#{applicant.birth_year}
 		</p:column>
-		<p:column>
+		<p:column filterBy="#{applicant.job}" sortBy="#{applicant.job}">
 			<f:facet name="header">Job</f:facet>
 			#{applicant.job}
 		</p:column>
-		<p:column>
+		<p:column filterBy="#{applicant.year}" sortBy="#{applicant.year}">
 			<f:facet name="header">Graduation</f:facet>
 			#{applicant.year}
 		</p:column>
-		<p:column>
+		<p:column filterBy="#{applicant.university}" sortBy="#{applicant.university}">
 			<f:facet name="header">University</f:facet>
 			#{applicant.university}
 		</p:column>
@@ -69,5 +69,6 @@
 		</p:column>
 		
 	</p:dataTable>
+	</h:form>
 </body>
 </html>

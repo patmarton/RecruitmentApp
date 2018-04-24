@@ -57,34 +57,34 @@
 		
 		</h:panelGrid>
 	</h:form>
-	
+	<h:form>
 	<p:dataTable value="#{ratingController.allRatings}" var="rating">
-		<p:column>
+		<p:column filterBy="#{rating.interviewer}">
 			<f:facet name="header">Interviewer</f:facet>
 			#{rating.interviewer}
 			
 		</p:column>
-		<p:column>
+		<p:column filterBy="#{rating.applicant}">
 		<f:facet name="header">Applicant</f:facet>
 			#{rating.applicant}
 		</p:column>
-		<p:column>
+		<p:column filterBy="#{rating.communication}">
 			<f:facet name="header">Communication</f:facet>
 			#{rating.communication}
 		</p:column>
-		<p:column>
+		<p:column filterBy="#{rating.skills}">
 			<f:facet name="header">Skills</f:facet>
 			#{rating.skills}
 		</p:column>
-		<p:column>
+		<p:column filterBy="#{rating.test}">
 			<f:facet name="header">Test</f:facet>
 			#{rating.test}
 		</p:column>
-		<p:column>
+		<p:column filterBy="#{rating.recommended}">
 			<f:facet name="header">Recommended</f:facet>
 			#{rating.recommended}
 		</p:column>
-		<p:column>
+		<p:column filterBy="#{rating.potential}">
 			<f:facet name="header">Potential</f:facet>
 			#{rating.potential}
 		</p:column>
@@ -94,5 +94,6 @@
 		</p:column>
 		
 	</p:dataTable>
+	</h:form>
 </body>
 </html>

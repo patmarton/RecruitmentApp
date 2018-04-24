@@ -29,25 +29,37 @@
 	
 	<h:form>
 		<h:panelGrid>
-			Interviewer: <h:inputText value="#{commentController.comment.interviewer}" />
-			Applicant: <h:inputText value="#{commentController.comment.applicant}" />
+			Interviewer:
+			
+			<p:selectOneMenu id="menu1" value="#{interviewerController.interviewer}">
+            	<f:selectItem itemLabel="Select One" itemValue="" />
+            	<f:selectItems value="#{interviewerController.allInterviewers}"  var="s" itemLabel="#{s.name}"/>
+        	</p:selectOneMenu>
+			
+			Applicant: 
+			
+			<p:selectOneMenu id="menu2" value="#{applicantController.applicant}">
+            	<f:selectItem itemLabel="Select One" itemValue="" />
+            	<f:selectItems value="#{applicantController.allApplicants}"  var="s" itemLabel="#{s.name}"/>
+        	</p:selectOneMenu>
+			
 			Comment: <h:inputText value="#{commentController.comment.comment}" />
 			
 			<h:commandButton action="#{commentController.createComment}" value="Create" />
 		
 		</h:panelGrid>
 	</h:form>
-	
+	<h:form>
 	<p:dataTable value="#{commentController.allComments}" var="comment">
-		<p:column>
+		<p:column filterBy="#{comment.comment}">
 			<f:facet name="header">Comment</f:facet>
 			#{comment.comment}
 		</p:column>
-		<p:column>
+		<p:column filterBy="#{comment.applicant}">
 		<f:facet name="header">Applicant</f:facet>
 			#{comment.applicant}
 		</p:column>
-		<p:column>
+		<p:column filterBy="#{comment.interviewer}">
 			<f:facet name="header">Interviewer</f:facet>
 			#{comment.interviewer}
 		</p:column>
@@ -57,5 +69,6 @@
 		</p:column>
 		
 	</p:dataTable>
+	</h:form>
 </body>
 </html>

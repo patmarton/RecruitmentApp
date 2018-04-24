@@ -24,7 +24,16 @@ public class InterviewerController {
 	private Interviewer interviewer = new Interviewer();
 	
 	private List<Interviewer> allInterviewers;
+	private List<Interviewer> filteredInterviewers;
 	
+	public List<Interviewer> getFilteredInterviewers() {
+		return filteredInterviewers;
+	}
+
+	public void setFilteredInterviewers(List<Interviewer> filteredInterviewers) {
+		this.filteredInterviewers = filteredInterviewers;
+	}
+
 	@PostConstruct
 	public void init(){
 		refreshAllInterviewers();

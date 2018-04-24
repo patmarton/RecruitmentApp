@@ -38,7 +38,7 @@
 		
 		</h:panelGrid>
 	</h:form>
-	
+	<h:form>
 	<p:dataTable value="#{interviewerController.allInterviewers}" var="interviewer" widgetVar="interviewer" editable="true">
 	
 	<f:facet name="header">
@@ -48,21 +48,22 @@
             </p:outputPanel>
     </f:facet>
 	
-		<p:column>
+		<p:column filterBy="#{interviewer.name}" sortBy="#{interviewer.name}" filterMatchMode="contains">
 		
 			<f:facet name="header">Name</f:facet>
-			#{interviewer.name}
+			<h:outputText value="#{interviewer.name}"/>
+			
 		
 		</p:column>
-		<p:column>
+		<p:column filterBy="#{interviewer.job}" sortBy="#{interviewer.job}">
 		<f:facet name="header">Job</f:facet>
 			#{interviewer.job}
 		</p:column>
-		<p:column>
+		<p:column filterBy="#{interviewer.position}" sortBy="#{interviewer.position}">
 			<f:facet name="header">Position</f:facet>
 			#{interviewer.position}
 		</p:column>
-		<p:column>
+		<p:column filterBy="#{interviewer.doag}" sortBy="#{interviewer.doag}">
 			<f:facet name="header">Doag</f:facet>
 			#{interviewer.doag}
 		</p:column>
@@ -71,5 +72,6 @@
 			<p:commandLink value="Delete" action="#{interviewerController.deleteInterviewer(interviewer)}" />
 		</p:column>
 	</p:dataTable>
+	</h:form>
 </body>
 </html>
