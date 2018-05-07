@@ -22,30 +22,36 @@ import com.jpa.entities.Interviewer;
 @RequestScoped
 public class InterviewController {
 
-	@EJB(lookup = "java:/InterviewService")
-	InterviewService interviewService;
-	
+//	@EJB(lookup = "java:/InterviewService")
+//	InterviewService interviewService;
+//	
 	@EJB
 	InterviewDao interviewDao;
 	
 	@PostConstruct
 	public void init(){
 		refreshAllInterviews();
+		initInterview();
+	}
+
+	private void initInterview() {
+		interview = new Interview();
+		interview.setInterviewer(new Interviewer());
 	}
 	
 	private void refreshAllInterviews() {
 		allInterviews = interviewDao.findAll();
 	}
 	
-	private Interview interview = new Interview();
+	private Interview interview;
 	
 	private List<Interview> allInterviews;
 	
 	public String createInterview(){
-		interviewService.addInterview(interview);
-		allInterviews = interviewDao.findAll();
+		//interviewService.addInterview(interview);
+		interviewDao.create(interview);
 		refreshAllInterviews();
-		interview = new Interview();
+		initInterview();
 		return null;
 	}
 	

@@ -24,9 +24,8 @@
 			Description: <p:inputText value="#{interviewController.interview.description}" />
 			Interviewer:
 			
-			<p:selectOneMenu id="menu1" value="#{interviewerController.interviewer.name}">
-            	<f:selectItem itemLabel="Select One" itemValue="" />
-            	<f:selectItems value="#{interviewerController.allInterviewers}"  var="s" itemLabel="#{s.name}"/>
+			<p:selectOneMenu id="menu1" value="#{interviewController.interview.interviewer.interviewerId}">
+            	<f:selectItems value="#{interviewerController.allInterviewers}" var="s" itemLabel="#{s.name}" itemValue="#{s.interviewerId}"/>
         	</p:selectOneMenu>
 			
 			Applicant: <p:inputText value="#{interviewController.interview.applicant}" />
