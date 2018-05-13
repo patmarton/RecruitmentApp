@@ -17,6 +17,7 @@ import com.ejb.services.InterviewService;
 import com.jpa.entities.Applicant;
 import com.jpa.entities.Interview;
 import com.jpa.entities.Interviewer;
+import com.jpa.entities.Job;
 
 @Named
 @RequestScoped
@@ -37,6 +38,8 @@ public class InterviewController {
 	private void initInterview() {
 		interview = new Interview();
 		interview.setInterviewer(new Interviewer());
+		interview.setJob(new Job());
+		interview.setApplicant(new Applicant());
 	}
 	
 	private void refreshAllInterviews() {

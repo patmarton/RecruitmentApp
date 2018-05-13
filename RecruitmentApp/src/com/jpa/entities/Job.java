@@ -36,11 +36,11 @@ public class Job {
 	@Column(name= "type")
 	private String type;
 
-	public int getJobId() {
+	public int getjobId() {
 		return jobId;
 	}
 
-	public void setJobId(int jobId) {
+	public void setjobId(int jobId) {
 		this.jobId = jobId;
 	}
 

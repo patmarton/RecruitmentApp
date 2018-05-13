@@ -98,11 +98,11 @@ public class Rating {
 		this.potential = potential;
 	}
 
-	public Interviewer getInterviewer() {
+	public Interviewer getinterviewer() {
 		return interviewer;
 	}
 
-	public void setInterviewer(Interviewer interviewer) {
+	public void setinterviewer(Interviewer interviewer) {
 		this.interviewer = interviewer;
 	}
 

@@ -21,32 +21,38 @@ import com.jpa.entities.Job;
 @RequestScoped
 public class JobController {
 
-	@EJB
-	JobService jobService;
+//	@EJB
+//	JobService jobService;
 	
 	@EJB
 	JobDao jobDao;
 	
-	private Job job = new Job();
+	private Job job;
 	
 	private List<Job> alljobs;
 	
 	@PostConstruct
 	public void init(){
 		refreshAllJobs();
+		initJob();
 	}
 	
 	private void refreshAllJobs() {
 		alljobs = jobDao.findAll();
 	}
 	
+	private void initJob(){
+		job = new Job();
+	}
+	
 	
 	
 	public String createJob(){
-		jobService.addJob(job);
-		alljobs = jobDao.findAll();
+		//jobService.addJob(job);
+		jobDao.create(job);
+		//alljobs = jobDao.findAll();
 		refreshAllJobs();
-		job = new Job();
+		initJob();
 		return null;
 	}
 	

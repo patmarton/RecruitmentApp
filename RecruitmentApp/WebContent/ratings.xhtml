@@ -20,27 +20,29 @@
 	<h:form>
 		<h:panelGrid>
 			Interviewer: 
-			<p:selectOneMenu id="menu1" value="#{interviewerController.interviewer.name}">
-            	<f:selectItem itemLabel="Select One" itemValue="" />
-            	<f:selectItems value="#{interviewerController.allInterviewers}"  var="s" itemLabel="#{s.name}"/>
+			
+			<p:selectOneMenu id="menu1" value="#{ratingController.rating.interviewer.interviewerId}">
+            	<f:selectItems value="#{interviewerController.allInterviewers}" var="s" itemLabel="#{s.name}" itemValue="#{s.interviewerId}"/>
         	</p:selectOneMenu>
+		
 			
 			Applicant: 
 			
-			<p:selectOneMenu id="menu2" value="#{applicantController.applicant.name}">
-            	<f:selectItem itemLabel="Select One" itemValue="" />
-            	<f:selectItems value="#{applicantController.allApplicants}"  var="s" itemLabel="#{s.name}"/>
+			<p:selectOneMenu id="menu2" value="#{ratingController.rating.applicant.applicantId}">
+            	<f:selectItems value="#{applicantController.allApplicants}" var="s" itemLabel="#{s.name}" itemValue="#{s.applicantId}"/>
         	</p:selectOneMenu>
 			
-			Communication (1-10): <h:inputText value="#{ratingController.rating.communication}" />
-			Skills (1-10): <h:inputText value="#{ratingController.rating.skills}" />
-			Test (1-10): <h:inputText value="#{ratingController.rating.test}" />
+
+			
+			Communication (1-10): <p:inputText value="#{ratingController.rating.communication}" />
+			Skills (1-10): <p:inputText value="#{ratingController.rating.skills}" />
+			Test (1-10): <p:inputText value="#{ratingController.rating.test}" />
 			Recommended (true or false):
 			<p:selectOneMenu id="rating" value="#{ratingController.rating.recommended}" style="width:150px">
                 <f:selectItem  itemLabel="True" itemValue="true" />
                 <f:selectItem  itemLabel="False" itemValue="false" />
             </p:selectOneMenu>
-			Potential (1-10): <h:inputText value="#{ratingController.rating.potential}" />
+			Potential (1-10): <p:inputText value="#{ratingController.rating.potential}" />
 			<h:commandButton action="#{ratingController.createRating}" value="Create" />
 		
 		</h:panelGrid>
@@ -53,14 +55,14 @@
 				listener="#{ratingController.onCellEdit}" update=":form:msgs" />
 	
 	
-		<p:column filterBy="#{rating.interviewer}">
+		<p:column filterBy="#{rating.interviewer.name}">
 			<f:facet name="header">Interviewer</f:facet>
-			#{rating.interviewer}
+			#{rating.interviewer.name}
 			
 		</p:column>
-		<p:column filterBy="#{rating.applicant}">
+		<p:column filterBy="#{rating.applicant.name}">
 		<f:facet name="header">Applicant</f:facet>
-			#{rating.applicant}
+			#{rating.applicant.name}
 		</p:column>
 		<p:column filterBy="#{rating.communication}">
 			<f:facet name="header">Communication</f:facet>

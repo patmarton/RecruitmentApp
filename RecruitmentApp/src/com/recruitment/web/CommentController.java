@@ -21,30 +21,41 @@ import com.jpa.entities.Interviewer;
 @RequestScoped
 public class CommentController {
 
-	@EJB
-	CommentService commentService;
+	//@EJB
+	//CommentService commentService;
 	
 	@EJB
 	CommentDao commentDao;
 	
 	@PostConstruct
 	public void init(){
+		initComment();
 		refreshAllComments();
+		
+	}
+	
+	private void initComment(){
+		comment = new Comment();
+		comment.setInterviewer(new Interviewer());
+		comment.setApplicant(new Applicant());
+		
+		
 	}
 	
 	private void refreshAllComments() {
 		allComments = commentDao.findAll();
 	}
 	
-	private Comment comment = new Comment();
+	private Comment comment;
 	
 	private List<Comment> allComments;
 	
 	public String createComment(){
-		commentService.addComment(comment);
-		allComments = commentDao.findAll();
+		//commentService.addComment(comment);
+		//allComments = commentDao.findAll();
+		commentDao.create(comment);
 		refreshAllComments();
-		comment = new Comment();
+		initComment();
 		return null;
 	}
 	

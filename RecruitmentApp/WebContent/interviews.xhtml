@@ -19,16 +19,28 @@
 	<h1>Add data to arrange a new Interview</h1>
 	<h:form>
 		<h:panelGrid>
-			Job: <p:inputText value="#{interviewController.interview.job}" />
+			Job: 
+			
+			<p:selectOneMenu id="menu1" value="#{interviewController.interview.job.jobId}">
+            	<f:selectItems value="#{jobController.alljobs}" var="s" itemLabel="#{s.name}" itemValue="#{s.jobId}"/>
+        	</p:selectOneMenu>
+			
+			
       		Date: <p:calendar mode="popup"  value="#{interviewController.interview.date}" />
 			Description: <p:inputText value="#{interviewController.interview.description}" />
 			Interviewer:
 			
-			<p:selectOneMenu id="menu1" value="#{interviewController.interview.interviewer.interviewerId}">
+			<p:selectOneMenu id="menu2" value="#{interviewController.interview.interviewer.interviewerId}">
             	<f:selectItems value="#{interviewerController.allInterviewers}" var="s" itemLabel="#{s.name}" itemValue="#{s.interviewerId}"/>
         	</p:selectOneMenu>
 			
-			Applicant: <p:inputText value="#{interviewController.interview.applicant}" />
+			Applicant: 
+			
+			<p:selectOneMenu id="menu3" value="#{interviewController.interview.applicant.applicantId}">
+            	<f:selectItems value="#{applicantController.allApplicants}" var="s" itemLabel="#{s.name}" itemValue="#{s.applicantId}"/>
+        	</p:selectOneMenu>
+			
+			
 			<h:commandButton action="#{interviewController.createInterview}" value="Create" />
 		
 		</h:panelGrid>
@@ -41,9 +53,9 @@
 				listener="#{interviewController.onCellEdit}" update=":form:msgs" />
 	
 	
-		<p:column filterBy="#{interview.job}">
+		<p:column filterBy="#{interview.job.name}">
 			<f:facet name="header">Job</f:facet>
-			#{interview.job}
+			#{interview.job.name}
 		</p:column>
 		<p:column filterBy="#{interview.date}">
 		<f:facet name="header">Date</f:facet>
@@ -62,11 +74,11 @@
 				</p:cellEditor>
 			
 		</p:column>
-		<p:column filterBy="#{interview.interviewer}">
+		<p:column filterBy="#{interview.interviewer.name}">
 			<f:facet name="header">Interviewer</f:facet>
 			<p:cellEditor>
 					<f:facet name="output">
-						<h:outputText value="#{interview.interviewer}" />
+						<h:outputText value="#{interview.interviewer.name}" />
 					</f:facet>
 					<f:facet name="input">
 						<p:selectOneMenu value="#{interview.interviewer}" style="width:100%">
@@ -76,9 +88,9 @@
 				</p:cellEditor>
 			
 		</p:column>
-		<p:column filterBy="#{interview.applicant}">
+		<p:column filterBy="#{interview.applicant.name}">
 			<f:facet name="header">Applicant</f:facet>
-			#{interview.applicant}
+			#{interview.applicant.name}
 		</p:column>
 		<p:column>
 			<f:facet name="header">Delete</f:facet>

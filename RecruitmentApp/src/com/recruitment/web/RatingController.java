@@ -22,8 +22,8 @@ import com.jpa.entities.Rating;
 @RequestScoped
 public class RatingController {
 
-	@EJB
-	RatingService ratingService;
+	//@EJB
+	//RatingService ratingService;
 	
 	@EJB
 	RatingDao ratingDao;
@@ -31,6 +31,13 @@ public class RatingController {
 	@PostConstruct
 	public void init(){
 		refreshAllRatings();
+		initRating();
+	}
+	
+	private void initRating(){
+		rating = new Rating();
+		rating.setApplicant(new Applicant());
+		rating.setinterviewer(new Interviewer());
 	}
 	
 	private void refreshAllRatings() {
@@ -38,15 +45,16 @@ public class RatingController {
 	}
 	
 	
-	private Rating rating = new Rating();
+	private Rating rating;
 	
 	private List<Rating> allRatings;
 	
 	public String createRating(){
-		ratingService.addRating(rating);
-		allRatings = ratingDao.findAll();
+		//ratingService.addRating(rating);
+		//allRatings = ratingDao.findAll();
+		ratingDao.create(rating);
 		refreshAllRatings();
-		rating = new Rating();
+		initRating();
 		return null;
 	}
 	

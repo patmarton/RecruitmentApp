@@ -20,17 +20,17 @@
 		<h:panelGrid>
 			Interviewer:
 			
-			<p:selectOneMenu id="menu1" value="#{interviewerController.interviewer}">
-            	<f:selectItem itemLabel="Select One" itemValue="" />
-            	<f:selectItems value="#{interviewerController.allInterviewers}"  var="s" itemLabel="#{s.name}"/>
+			<p:selectOneMenu id="menu1" value="#{commentController.comment.interviewer.interviewerId}">
+            	<f:selectItems value="#{interviewerController.allInterviewers}" var="s" itemLabel="#{s.name}" itemValue="#{s.interviewerId}"/>
         	</p:selectOneMenu>
+			
 			
 			Applicant: 
 			
-			<p:selectOneMenu id="menu2" value="#{applicantController.applicant}">
-            	<f:selectItem itemLabel="Select One" itemValue="" />
-            	<f:selectItems value="#{applicantController.allApplicants}"  var="s" itemLabel="#{s.name}"/>
+			<p:selectOneMenu id="menu2" value="#{commentController.comment.applicant.applicantId}">
+            	<f:selectItems value="#{applicantController.allApplicants}" var="s" itemLabel="#{s.name}" itemValue="#{s.applicantId}"/>
         	</p:selectOneMenu>
+
 			
 			Comment: <p:inputText value="#{commentController.comment.comment}" />
 			
@@ -62,13 +62,13 @@
 			
 			
 		</p:column>
-		<p:column filterBy="#{comment.applicant}">
+		<p:column filterBy="#{comment.applicant.name}">
 		<f:facet name="header">Applicant</f:facet>
-			#{comment.applicant}
+			#{comment.applicant.name}
 		</p:column>
-		<p:column filterBy="#{comment.interviewer}">
+		<p:column filterBy="#{comment.interviewer.name}">
 			<f:facet name="header">Interviewer</f:facet>
-			#{comment.interviewer}
+			#{comment.interviewer.name}
 		</p:column>
 		<p:column>
 			<f:facet name="header">Delete</f:facet>
